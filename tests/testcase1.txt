@@ -1,6 +1,30 @@
-mở trang https://ct360.io/Members/Sign-in
-nhập text wonann vào ô input[type='text']
-nhập text 123456 vào ô input[type='password']
-click nút Log in
-kiểm tra chứa text Login successful
+[TestCase]
+Name: Đăng nhập và tạo sản phẩm mới
+Objective: Xác minh rằng người dùng có thể đăng nhập thành công và sau đó tạo được sản phẩm mới.
 
+[Tasks]
+
+Task 1: Đăng nhập hệ thống
+Steps:
+1. Mở trang https://ct360.io/Members/Sign-in
+2. Nhập username "validUser"
+3. Nhập password "validPass123"
+4. Click nút Log in
+ExpectedResult: Hệ thống điều hướng đến trang https://ct360.io/ và hiển thị Dashboard.
+Dependency: None
+
+Task 2: Mở form tạo sản phẩm
+Steps:
+1. Truy cập menu "Sản phẩm"
+2. Click nút "Tạo sản phẩm"
+ExpectedResult: Hiển thị form tạo sản phẩm.
+Dependency: Task 1 (phải login thành công)
+
+Task 3: Nhập thông tin và lưu sản phẩm
+Steps:
+1. Nhập tên sản phẩm "Áo Thun Test"
+2. Nhập giá "199000"
+3. Upload ảnh sản phẩm "shirt.jpg"
+4. Click nút "Lưu"
+ExpectedResult: Thông báo "Tạo sản phẩm thành công" hiển thị và sản phẩm xuất hiện trong danh sách.
+Dependency: Task 2 (form tạo sản phẩm đã hiển thị)
