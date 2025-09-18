@@ -1,0 +1,22 @@
+2025-09-18 09:20:19,127 - INFO - 
+🚀 Chạy testcase: testcase1.txt
+2025-09-18 09:20:19,127 - INFO - ====== WebDriver manager ======
+2025-09-18 09:20:19,196 - INFO - Get LATEST chromedriver version for google-chrome
+2025-09-18 09:20:19,447 - INFO - Get LATEST chromedriver version for google-chrome
+2025-09-18 09:20:19,718 - INFO - There is no [linux64] chromedriver "140.0.7339.185" for browser google-chrome "140.0.7339" in cache
+2025-09-18 09:20:19,719 - INFO - Get LATEST chromedriver version for google-chrome
+2025-09-18 09:20:20,312 - INFO - WebDriver version 140.0.7339.185 selected
+2025-09-18 09:20:20,318 - INFO - Modern chrome version https://storage.googleapis.com/chrome-for-testing-public/140.0.7339.185/linux64/chromedriver-linux64.zip
+2025-09-18 09:20:20,318 - INFO - About to download new driver from https://storage.googleapis.com/chrome-for-testing-public/140.0.7339.185/linux64/chromedriver-linux64.zip
+2025-09-18 09:20:20,528 - INFO - Driver downloading response is 200
+2025-09-18 09:20:20,867 - INFO - Get LATEST chromedriver version for google-chrome
+2025-09-18 09:20:21,282 - INFO - Driver has been saved in cache [/home/long/.wdm/drivers/chromedriver/linux64/140.0.7339.185]
+2025-09-18 09:20:21,611 - INFO - ➡️ Bước: mở trang https://ct360.io/Members/Sign-in
+2025-09-18 09:20:23,709 - INFO - ➡️ Bước: nhập text wonann vào ô input[type='text']
+2025-09-18 09:20:24,907 - INFO - ➡️ Bước: nhập text 123456 vào ô input[type='password']
+2025-09-18 09:20:26,075 - INFO - ➡️ Bước: click nút Log in
+2025-09-18 09:20:27,536 - INFO - ➡️ Bước: kiểm tra chứa text Login successful
+2025-09-18 09:20:28,035 - INFO - ✅ PASS: tìm thấy 'Login successful'
+2025-09-18 09:20:29,037 - INFO - 
+📊 Kết quả: 5/5 bước PASS, 0 FAIL
+

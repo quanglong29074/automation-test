@@ -1,0 +1,25 @@
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environment
+venv/
+.env
+
+# IDEs
+.vscode/
+.idea/
+
+# Logs
+*.log
+report.log
+
+# Screenshots or temporary files
+screenshots/
+*.tmp
+*.swp
+
+# Others
+.DS_Store

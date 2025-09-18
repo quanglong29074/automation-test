@@ -1,0 +1,6 @@
+mở trang https://ct360.io/Members/Sign-in
+nhập text wonann vào ô input[type='text']
+nhập text 123456 vào ô input[type='password']
+click nút Log in
+kiểm tra chứa text Login successful
+
