@@ -129,7 +129,7 @@ A YAML file is a list of test case objects. Each test case has the following key
   title: Cập nhật thông tin Discord
   precondition: Trang Profile đã hiển thị
   steps:
-    - trong mục "Social Media", nhập vào trường Discord giá trị "https://discord.gg/discord-test"
+    - trong mục "Social Media", nhập vào trường Discord giá trị "https://discord.gg/discord"
     - click nút "Save"
   expected: Hiển thị thông báo "Lưu thành công" và trường Discord hiển thị giá trị vừa nhập
   priority: high
