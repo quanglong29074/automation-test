@@ -1,0 +1,27 @@
+- id: TC_LOGIN_001
+  title: Đăng nhập thành công
+  precondition: Trang login đã mở
+  steps:
+    - mở trang "https://staging.trung-rong.pages.dev/login"
+    - nhập username "jehatik"
+    - nhập password "123456"
+    - click nút "Log in"
+  expected: Hệ thống điều hướng đến "https://staging.trung-rong.pages.dev/" và hiển thị Dashboard
+  priority: high
+
+- id: TC_PROFILE_001
+  title: Truy cập trang Profile
+  precondition: Người dùng đã đăng nhập thành công
+  steps:
+    - mở trang "https://staging.trung-rong.pages.dev/profile"
+  expected: Trang Profile hiển thị với form chỉnh sửa thông tin cá nhân
+  priority: medium
+
+- id: TC_PROFILE_002
+  title: Cập nhật thông tin Telegram
+  precondition: Trang Profile đã hiển thị
+  steps:
+    - trong mục "Social Media", nhập vào trường Discord giá trị "https://discord.gg/discord-test"
+    - click nút "Save"
+  expected: Hiển thị thông báo "Lưu thành công" và trường Discord hiển thị giá trị vừa nhập
+  priority: high

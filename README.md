@@ -60,12 +60,12 @@ To run the sample test case:
 python runner.py
 ```
 
-This will execute `tests/testcase1.txt` using the browser automation agent.
+This will execute `tests/testcase1.yaml` using the browser automation agent.
 
 ### Run a Custom Test Case
 Modify `runner.py` to point to a different file, or update the `run_testcase_from_file` call:
 ```python
-asyncio.run(run_testcase_from_file("tests/your_testcase.txt"))
+asyncio.run(run_testcase_from_file("tests/your_testcase.yaml"))
 ```
 
 Ensure the test case file follows the standard format described below.
@@ -76,79 +76,63 @@ Ensure the test case file follows the standard format described below.
 
 ## Writing Test Cases
 
-Test cases are written in plain text files (e.g., `.txt`) following a structured format. Refer to `tests/testcase1.txt` for the sample.
+Test cases are written in YAML files (`.yaml`) following a structured format. Refer to `tests/testcase1.yaml` for the sample. Each file contains a list of individual test cases.
 
 ### Standard Format
 
-```
-[TestCase]
-Name: [Short descriptive name]
-Objective: [Brief description of what the test verifies]
+A YAML file is a list of test case objects. Each test case has the following keys:
 
-[Tasks]
-
-Task 1: [Task name]
-Steps:
-1. [Step 1 description]
-2. [Step 2 description]
-...
-ExpectedResult: [What should happen if successful]
-Dependency: [Previous task number or "None"]
-
-Task 2: [Task name]
-Steps:
-1. [Step 1 description]
-...
-ExpectedResult: [Expected outcome]
-Dependency: [Task 1 (or relevant dependency)]
-...
-```
+- `id`: Unique identifier (e.g., "TC_LOGIN_001")
+- `title`: Descriptive name of the test case
+- `precondition`: Conditions that must be met before running the test (e.g., "Trang login đã mở")
+- `steps`: List of action steps as strings (e.g., "- mở trang 'https://example.com'")
+- `expected`: Expected outcome if the test passes
+- `priority`: Priority level (e.g., "high", "medium", "low")
 
 ### Guidelines
-- **Name**: Keep it concise and descriptive (e.g., "Đăng nhập và tạo sản phẩm mới").
-- **Objective**: Explain the high-level goal (e.g., "Xác minh rằng người dùng có thể đăng nhập thành công và sau đó tạo được sản phẩm mới").
-- **[Tasks]**: Break down into sequential tasks. Each task builds on previous ones.
-  - **Steps**: Numbered list of actions (e.g., "Mở trang https://ct360.io/Members/Sign-in", "Nhập username 'validUser'").
-    - Use specific details like URLs, input values, button names.
-    - For interactions: Specify clicks, inputs, uploads (e.g., "Upload ảnh sản phẩm 'shirt.jpg'").
-  - **ExpectedResult**: Clear success criteria (e.g., "Hệ thống điều hướng đến trang https://ct360.io/ và hiển thị Dashboard.", "Thông báo 'Tạo sản phẩm thành công' hiển thị").
-  - **Dependency**: Reference prior tasks (e.g., "Task 1 (phải login thành công)") or "None" for the first task.
-- Use Vietnamese for consistency with the sample, unless specified otherwise.
-- Save files in the `tests/` directory.
-- Ensure steps are executable by the automation agent (e.g., browser navigation, form filling).
+- **id**: Use a unique, descriptive ID following a naming convention (e.g., TC_[MODULE]_[NUMBER]).
+- **title**: Concise description in Vietnamese (e.g., "Đăng nhập thành công").
+- **precondition**: Specify setup requirements or dependencies (e.g., "Người dùng đã đăng nhập thành công").
+- **steps**: Bullet list of actions starting with verbs like "mở", "nhập", "click". Include specific details:
+  - URLs for navigation.
+  - Values for inputs (e.g., usernames, passwords).
+  - Element identifiers for interactions (e.g., button names, fields).
+- **expected**: Clear, verifiable success criteria (e.g., URL changes, UI elements displayed, messages shown).
+- **priority**: Classify as "high", "medium", or "low" based on importance.
+- Use Vietnamese for consistency with the sample.
+- Save files in the `tests/` directory with `.yaml` extension.
+- Ensure steps are executable by the automation agent (e.g., browser actions, form interactions).
+- Multiple test cases can be defined in one YAML file as a list.
 
-### Example from testcase1.txt
-```
-[TestCase]
-Name: Đăng nhập và tạo sản phẩm mới
-Objective: Xác minh rằng người dùng có thể đăng nhập thành công và sau đó tạo được sản phẩm mới.
+### Example from testcase1.yaml
+```yaml
+- id: TC_LOGIN_001
+  title: Đăng nhập thành công
+  precondition: Trang login đã mở
+  steps:
+    - mở trang "https://staging.trung-rong.pages.dev/login"
+    - nhập username "jehatik"
+    - nhập password "123456"
+    - click nút "Log in"
+  expected: Hệ thống điều hướng đến "https://staging.trung-rong.pages.dev/" và hiển thị Dashboard
+  priority: high
 
-[Tasks]
+- id: TC_PROFILE_001
+  title: Truy cập trang Profile
+  precondition: Người dùng đã đăng nhập thành công
+  steps:
+    - mở trang "https://staging.trung-rong.pages.dev/profile"
+  expected: Trang Profile hiển thị với form chỉnh sửa thông tin cá nhân
+  priority: medium
 
-Task 1: Đăng nhập hệ thống
-Steps:
-1. Mở trang https://ct360.io/Members/Sign-in
-2. Nhập username "validUser"
-3. Nhập password "validPass123"
-4. Click nút Log in
-ExpectedResult: Hệ thống điều hướng đến trang https://ct360.io/ và hiển thị Dashboard.
-Dependency: None
-
-Task 2: Mở form tạo sản phẩm
-Steps:
-1. Truy cập menu "Sản phẩm"
-2. Click nút "Tạo sản phẩm"
-ExpectedResult: Hiển thị form tạo sản phẩm.
-Dependency: Task 1 (phải login thành công)
-
-Task 3: Nhập thông tin và lưu sản phẩm
-Steps:
-1. Nhập tên sản phẩm "Áo Thun Test"
-2. Nhập giá "199000"
-3. Upload ảnh sản phẩm "shirt.jpg"
-4. Click nút "Lưu"
-ExpectedResult: Thông báo "Tạo sản phẩm thành công" hiển thị và sản phẩm xuất hiện trong danh sách.
-Dependency: Task 2 (form tạo sản phẩm đã hiển thị)
+- id: TC_PROFILE_002
+  title: Cập nhật thông tin Discord
+  precondition: Trang Profile đã hiển thị
+  steps:
+    - trong mục "Social Media", nhập vào trường Discord giá trị "https://discord.gg/discord-test"
+    - click nút "Save"
+  expected: Hiển thị thông báo "Lưu thành công" và trường Discord hiển thị giá trị vừa nhập
+  priority: high
 ```
 
 ## Troubleshooting
@@ -160,6 +144,6 @@ Dependency: Task 2 (form tạo sản phẩm đã hiển thị)
 - `requirements.txt`: Dependencies
 - `runner.py`: Main runner script
 - `.env`: Environment variables
-- `tests/`: Test case files (e.g., `testcase1.txt`)
+- `tests/`: Test case files (e.g., `testcase1.yaml`)
 
 For contributions, follow the test case format and update this README as needed.

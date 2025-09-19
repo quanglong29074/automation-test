@@ -23,4 +23,4 @@ async def run_testcase_from_file(filepath: str):
     print("Kết quả:", result)
 
 if __name__ == "__main__":
-    asyncio.run(run_testcase_from_file("tests/testcase1.txt"))
+    asyncio.run(run_testcase_from_file("tests/testcase1.yaml"))
