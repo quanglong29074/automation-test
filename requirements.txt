@@ -4,6 +4,4 @@ python-dotenv
 requests
 pygithub
 opencv-python 
-ffmpeg-python
-mss
 browser-use
